@@ -1,27 +1,11 @@
-import re
-from collections import Counter
-from typing import List
-import random
-
-
-def only_words(text: str):
-    return re.findall(r"\w+", text.lower())
-
-def get_words():
-    with open("./src/datasets/dictionary.txt") as reader:
-        return set(only_words(reader.read()))
-
-
-def get_word_counts():
-    with open("./src/datasets/corpus.txt") as reader:
-        return Counter(only_words(reader.read()))
-
+from utils import get_misspellings, get_word_counts, get_words
 
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
 WORD_COUNTS = get_word_counts()
 WORDS = get_words()
 
-def probability_of(word: str):
+
+def probability_of(word):
     return WORD_COUNTS[word] / sum(WORD_COUNTS.values())
 
 
@@ -29,7 +13,7 @@ def correct(word):
     return max(get_candidates(word), key=probability_of)
 
 
-def get_candidates(word: str):
+def get_candidates(word):
     if word in WORDS:
         return [word]
     else:
@@ -40,11 +24,11 @@ def get_candidates(word: str):
         )
 
 
-def filter_unknown(words: List[str]):
+def filter_unknown(words):
     return set(word for word in words if word in WORDS)
 
 
-def one_edit_from(word: str):
+def one_edit_from(word):
     splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
 
     deletes = [l + r[1:] for (l, r) in splits if r]
@@ -55,7 +39,7 @@ def one_edit_from(word: str):
     return set(deletes + transposes + replaces + inserts)
 
 
-def two_edits_from(word: str):
+def two_edits_from(word):
     return set(
         second_edit
         for edit in one_edit_from(word)
@@ -63,28 +47,12 @@ def two_edits_from(word: str):
     )
 
 
-def get_misspellings():
-    with open("./src/datasets/misspellings.txt") as reader:
-        text = reader.read().split("\n")
-        base_indexes = [text.index(word) for word in text if word[0] == "$"]
-        misspellings = []
-        for i, word in enumerate(text):
-            if word[0] == "$":
-                pass
-
-            j = i
-            while not j in base_indexes:
-                j -= 1
-            misspellings.append((word.lower(), text[j][1:].lower()))
-
-    return misspellings
-
-
 def test(misspellings):
     results = {"right": 0, "wrong": 0}
 
     for wrong, right in misspellings:
         correction = correct(wrong)
+        print(f"{wrong} -> {correction} (predicted) {right} (actual)")
         if correction == right:
             results["right"] += 1
         else:
@@ -92,10 +60,8 @@ def test(misspellings):
 
     percentage = round((results["right"] / sum(results.values())) * 100)
     print(f"Was right {percentage}% of the time")
-        
+
 
 misspellings = get_misspellings()
-random.shuffle(misspellings)
 sample = misspellings[:1000]
-print("Built misspellings")
 test(sample)

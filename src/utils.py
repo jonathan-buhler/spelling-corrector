@@ -1,23 +1,24 @@
+import re
+from collections import Counter
+from random import shuffle
+
+
+def only_words(text: str):
+    return re.findall(r"[^_\W]+", text.lower())
+
+
 def get_misspellings():
     with open("./src/datasets/misspellings.txt") as reader:
-        text = reader.read().split("\n")
-        base_indexes = [text.index(word) for word in text if word[0] == "$"]
-        misspellings = []
-        for i, word in enumerate(text):
-            if word[0] == "$":
-                continue
+        lines = reader.read().split("\n")
+        pairs = [line.split(",") for line in lines]
+        shuffle(pairs)
+        return pairs
 
-            j = i
-            while not j in base_indexes:
-                j -= 1
-            misspellings.append((word.lower(), text[j][1:].lower()))
-
-    return misspellings
+def get_words():
+    with open("./src/datasets/dictionary.txt") as reader:
+        return set(only_words(reader.read()))
 
 
-misspellings = get_misspellings()
-print(misspellings[:10])
-
-with open("./src/datasets/new_misspellings.txt", "a") as writer:
-    for misspelling in misspellings:
-        writer.write(f"{misspelling[0]},{misspelling[1]}\n")
+def get_word_counts():
+    with open("./src/datasets/corpus.txt") as reader:
+        return Counter(only_words(reader.read()))
