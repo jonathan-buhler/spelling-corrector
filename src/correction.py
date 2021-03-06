@@ -1,4 +1,4 @@
-from utils import get_misspellings, get_word_counts, get_words
+from utils import get_word_counts, get_words
 
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
 WORD_COUNTS = get_word_counts()
@@ -47,30 +47,6 @@ def two_edits_from(word):
     )
 
 
-def test(misspellings):
-    results = {"right": 0, "wrong": 0}
-
-    for wrong, right in misspellings:
-        correction = correct(wrong)
-        print(f"{wrong} -> {correction} (predicted) {right} (actual)")
-        if correction == right:
-            results["right"] += 1
-        else:
-            results["wrong"] += 1
-
-    percentage = round((results["right"] / sum(results.values())) * 100)
-    print(f"Was right {percentage}% of the time")
-
-
-misspellings = get_misspellings()
-sample = misspellings[:1000]
-test(sample)
-assert correct('speling') == 'spelling'              # insert
-assert correct('korrectud') == 'corrected'           # replace 2
-assert correct('bycycle') == 'bicycle'               # replace
-assert correct('inconvient') == 'inconvenient'       # insert 2
-assert correct('arrainged') == 'arranged'            # delete
-assert correct('peotry') =='poetry'                  # transpose
-assert correct('peotryy') =='poetry'                 # transpose + delete
-assert correct('word') == 'word'                     # known
-assert correct('quintessential') == 'quintessential' # unknown
+misspellings = ["speling", "computinga", "clasrom", "jonahtan", "ptyhon", "prgrammin"]
+for misspelling in misspellings:
+    print(f"{misspelling} -> {correct(misspelling)}")
