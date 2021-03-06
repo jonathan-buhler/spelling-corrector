@@ -65,3 +65,12 @@ def test(misspellings):
 misspellings = get_misspellings()
 sample = misspellings[:1000]
 test(sample)
+assert correct('speling') == 'spelling'              # insert
+assert correct('korrectud') == 'corrected'           # replace 2
+assert correct('bycycle') == 'bicycle'               # replace
+assert correct('inconvient') == 'inconvenient'       # insert 2
+assert correct('arrainged') == 'arranged'            # delete
+assert correct('peotry') =='poetry'                  # transpose
+assert correct('peotryy') =='poetry'                 # transpose + delete
+assert correct('word') == 'word'                     # known
+assert correct('quintessential') == 'quintessential' # unknown
