@@ -16,12 +16,12 @@ def correct(word):
 def get_candidates(word):
     if word in WORDS:
         return [word]
-    else:
-        return (
-            filter_unknown(one_edit_from(word))
-            or filter_unknown(two_edits_from(word))
-            or [word]
-        )
+    
+    return (
+        filter_unknown(one_edit_from(word))
+        or filter_unknown(two_edits_from(word))
+        or [word]
+    )
 
 
 def filter_unknown(words):

@@ -15,10 +15,10 @@ def get_misspellings():
         return pairs
 
 def get_words():
-    with open("./src/datasets/dictionary.txt") as reader:
+    with open("./datasets/dictionary.txt") as reader:
         return set(only_words(reader.read()))
 
 
 def get_word_counts():
-    with open("./src/datasets/corpus.txt") as reader:
+    with open("./datasets/corpus.txt") as reader:
         return Counter(only_words(reader.read()))
