@@ -1,7 +1,7 @@
 import re
 from collections import Counter
-from random import shuffle
 from os import listdir
+from random import shuffle
 
 
 def only_words(text: str):
@@ -15,6 +15,7 @@ def get_misspellings():
         shuffle(pairs)
         return pairs
 
+
 def get_words():
     with open("./datasets/dictionary.txt") as reader:
         return set(only_words(reader.read()))
@@ -23,6 +24,7 @@ def get_words():
 def get_word_counts():
     with open("./datasets/corpus.txt") as reader:
         return Counter(only_words(reader.read()))
+
 
 def collate():
     files = listdir("./datasets/gutenberg")

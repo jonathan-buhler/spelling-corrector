@@ -16,7 +16,7 @@ def correct(word):
 def get_candidates(word):
     if word in WORDS:
         return [word]
-    
+
     return (
         filter_unknown(one_edit_from(word))
         or filter_unknown(two_edits_from(word))
