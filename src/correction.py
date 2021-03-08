@@ -47,6 +47,6 @@ def two_edits_from(word):
     )
 
 
-misspellings = ["speling", "computinga", "clasrom", "jonahtan", "ptyhon", "prgrammin"]
+misspellings = ["speling", "computinga", "clasrom", "ptyhon", "prgrammin", "jonahtan"]
 for misspelling in misspellings:
     print(f"{misspelling} -> {correct(misspelling)}")
