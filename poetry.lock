@@ -454,6 +454,17 @@ requests = "*"
 test = ["codecov", "ipykernel", "pytest (>=5.3.2)", "pytest-cov", "jupyter-server", "pytest-console-scripts", "strict-rfc3339", "wheel"]
 
 [[package]]
+name = "jupyterlab-spellchecker"
+version = "0.5.1"
+description = "A spell checker for JupyterLab."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+jupyterlab = ">=3.0,<4.0"
+
+[[package]]
 name = "markupsafe"
 version = "1.1.1"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -924,7 +935,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "ae015761b3521a27de86d593205fa2756ef9189764015448aaf3dcee50bda223"
+content-hash = "e61fbf6b9b3ec9bc5c4179b0aea397e4088ec0b75bdd2e6572cda24de72a6a05"
 
 [metadata.files]
 anyio = [
@@ -1112,6 +1123,10 @@ jupyterlab-pygments = [
 jupyterlab-server = [
     {file = "jupyterlab_server-2.3.0-py3-none-any.whl", hash = "sha256:653cb811739e59f2f6998f659b4635a90c110a128e0245ce27dc3fe02c46543a"},
     {file = "jupyterlab_server-2.3.0.tar.gz", hash = "sha256:e7a0245aa3de23a1803de2eff401e4ca4594538d9f59806134f30419a6d8b6a3"},
+]
+jupyterlab-spellchecker = [
+    {file = "jupyterlab-spellchecker-0.5.1.tar.gz", hash = "sha256:ffe2828cfd226e4aa3948d8f0cb1ecc7939d4ef1ac67ac26cfdee08825a92126"},
+    {file = "jupyterlab_spellchecker-0.5.1-py3-none-any.whl", hash = "sha256:762a53de2ea9424641f3685016cef5911014ad417600e34c28bb49893d9d90ef"},
 ]
 markupsafe = [
     {file = "MarkupSafe-1.1.1-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161"},

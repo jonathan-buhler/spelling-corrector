@@ -8,6 +8,7 @@ license = "GPL-3.0-or-later"
 [tool.poetry.dependencies]
 python = "^3.8"
 jupyterlab = "^3.0.9"
+jupyterlab-spellchecker = "^0.5.1"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
