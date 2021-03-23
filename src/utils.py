@@ -16,7 +16,7 @@ def get_misspellings():
         return pairs
 
 
-def get_words():
+def get_dictionary():
     with open("./datasets/dictionary.txt") as reader:
         return set(only_words(reader.read()))
 
